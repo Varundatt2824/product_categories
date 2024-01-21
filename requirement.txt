@@ -1,0 +1,11 @@
+python-dotenv
+langchain
+PyPDF2
+langchain_openai
+openai
+pdfminer
+streamlit
+pypdf
+tiktoken
+nltk
+json
