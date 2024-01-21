@@ -1,4 +1,8 @@
 def category_extraction(llm,product_list,summary):
+    """
+    Function takes a LLM model, product list and the summary of extracted text from pdf 
+    and outputs the list of product categories which are relavant to text.
+    """
     
     from langchain.schema import(
             AIMessage,
