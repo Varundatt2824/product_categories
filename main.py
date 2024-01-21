@@ -1,9 +1,9 @@
 import streamlit as st
 import os
 from langchain_openai import ChatOpenAI
-from util.text_extraction_and_preprocessing import get_pdf_text,text_splitting
-from util.text_summarization import  num_tokens_from_string,text_summarization
-from util.category_extraction import category_extraction
+from utils.text_extraction_and_preprocessing import get_pdf_text,text_splitting
+from utils.text_summarization import  num_tokens_from_string,text_summarization
+from utils.category_extraction import category_extraction
 import json
 from dotenv import load_dotenv
 load_dotenv()
@@ -43,9 +43,10 @@ if pdf_doc is not None:
         summary=text_summarization(text,docs,llm,model_name)
         tokens_1=num_tokens_from_string(summary,model_name)
         print("Number of tokens after summarization:",tokens_1)
+        print(summary)
 
-    st.subheader("Summary")
-    st.write(summary)
+    # st.subheader("Summary")
+    # st.write(summary)
 
     res=category_extraction(llm,product_list,summary)
     st.subheader("Categories")
