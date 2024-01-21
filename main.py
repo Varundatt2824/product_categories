@@ -8,15 +8,14 @@ import json
 from dotenv import load_dotenv
 load_dotenv()
 
-#loading model
+#setting up the  model
 model_name='gpt-3.5-turbo'
 llm=ChatOpenAI(model_name=model_name,temperature=0,openai_api_key=os.getenv("OPENAI_API_KEY"))
-
-
 
 st.title("Product Categorization")
 pdf_doc = st.file_uploader("Choose a PDF file", type="pdf")
 
+#defining the product list
 product_list=["Laptops","Tablets","Smartphones","Headphones","Speakers","Refrigerators","Washing Machines",
     "Dishwashers","Electric Cars","Motorcycle Helmets","Brake Pads","Engine Oil","Antibiotics","Pain Relievers",
     "Antacids","Frozen Meals","Paint strippers","Soft Drinks","Chocolate","Sunscreen","Lipstick",
@@ -36,19 +35,16 @@ product_list=["Laptops","Tablets","Smartphones","Headphones","Speakers","Refrige
 
 if pdf_doc is not None:
     with st.spinner("Processing..."):
-        text=get_pdf_text(pdf_doc)
-        docs=text_splitting(text)
+        text=get_pdf_text(pdf_doc) #extracting text from pdf
+        docs=text_splitting(text) #creating chunks
         tokens=num_tokens_from_string(text,model_name)
         print("Number of tokens before summarization:",tokens)
-        summary=text_summarization(text,docs,llm,model_name)
+        summary=text_summarization(docs,llm) #summarizing the text
         tokens_1=num_tokens_from_string(summary,model_name)
         print("Number of tokens after summarization:",tokens_1)
         print(summary)
 
-    # st.subheader("Summary")
-    # st.write(summary)
-
-    res=category_extraction(llm,product_list,summary)
+    res=category_extraction(llm,product_list,summary) #extracting product categories
     st.subheader("Categories")
     st.write(json.loads(res))
 
