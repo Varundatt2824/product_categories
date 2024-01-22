@@ -10,7 +10,7 @@ A list of product categories, which are relevant to the regulation.
 # How to run
 1. Clone the project.
 2. Install requirements from requirement.txt
-3. Add your openAI api key in main.py
+3. Add your openAI api key in main.py or create an .env file and add the openAI api key , OPENAI_API_KEY= "your_api_key"
 4. run: streamlit run main.py
 
 # output snapshot
