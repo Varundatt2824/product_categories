@@ -34,10 +34,10 @@ product_list=["Laptops","Tablets","Smartphones","Headphones","Speakers","Refrige
 
 
 if pdf_doc is not None:
-    text=get_pdf_text(pdf_doc)
+    text=get_pdf_text(pdf_doc) #extracting text from pdf
     if len(text)!=0:
         with st.spinner("Processing..."):
-         #extracting text from pdf
+         
         
             docs=text_splitting(text) #creating chunks
             tokens=num_tokens_from_string(text,model_name)
