@@ -18,7 +18,7 @@ def text_summarization(docs,llm)->str:
     summarize those chunks and return as a string.
     """
     
-    prompt_template = """Write a concise summary of the following:
+    prompt_template = """Write a concise summary of the following in English:
     {text}
     """
     prompt = PromptTemplate(template=prompt_template, input_variables=["text"]) 
