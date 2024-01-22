@@ -34,9 +34,11 @@ product_list=["Laptops","Tablets","Smartphones","Headphones","Speakers","Refrige
 
 
 if pdf_doc is not None:
-    with st.spinner("Processing..."):
-        text=get_pdf_text(pdf_doc) #extracting text from pdf
-        if len(text)!=0:
+    text=get_pdf_text(pdf_doc)
+    if len(text)!=0:
+        with st.spinner("Processing..."):
+         #extracting text from pdf
+        
             docs=text_splitting(text) #creating chunks
             tokens=num_tokens_from_string(text,model_name)
             print("Number of tokens before summarization:",tokens)
@@ -45,9 +47,12 @@ if pdf_doc is not None:
             print("Number of tokens after summarization:",tokens_1)
             print(summary)
 
-            res=category_extraction(llm,product_list,summary) #extracting product categories
-    st.subheader("Categories")
-    st.write(json.loads(res))
+            res=category_extraction(llm,product_list,summary) #extracting product categories 
+        st.subheader("Categories")
+        st.write(json.loads(res)) 
+    else:
+        st.write("No text found")  
+    
 
 
         
