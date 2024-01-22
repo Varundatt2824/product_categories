@@ -18,11 +18,11 @@ def category_extraction(llm,product_list,summary):
                            The output should be in json format
                   An example of output is given below
                         {relavant products:[
-                            0:{product:
+                            {product:
                                 score:
                                 reason:
                             },
-                            1:{product:
+                            {product:
                                 score:
                                 reason:
                             },
